@@ -1,0 +1,81 @@
+﻿
+@model ProductEditVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1 class="text-uppercase text-center mb-5" style="background: linear-gradient(135deg, white 0%, green 100%); background-clip: text; -webkit-background-clip: text; color: transparent; font-weight: 800; letter-spacing: 2px;">
+    Update Product
+</h1>
+<hr />
+
+<div class="d-flex justify-content-center align-items-center m-2" style="margin-top: 7px;">
+    <form asp-action="Update" asp-controller="Product" enctype="multipart/form-data" method="post" class="row g-3 p-2 w-50 shadow-lg mt-2">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+        <input asp-for="Id" type="hidden" /> 
+       <input type="hidden" name="ImageURL" value="@Model.ImageURL" /> 
+        <div class="col-md-12">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Count" class="form-label"></label>
+            <input asp-for="Count" class="form-control" type="number" />
+            <span asp-validation-for="Count" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ExpiryDate" class="form-label"></label>
+            <input asp-for="ExpiryDate" class="form-control" type="date" />
+            <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="CategoryName" class="form-label"></label>
+            <select class="form-select" asp-for="CategoryId" asp-items="Model.Categories">
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-2">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" type="text" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="col-md-12">
+            <label asp-for="Image" class="form-label"></label>
+            <input asp-for="Image" class="form-control" type="file" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        @* Show current image preview if one exists *@
+        @if (!string.IsNullOrEmpty(Model.ImageURL))
+        {
+            <div class="mb-2">
+                <p class="text-muted small mb-1">Current image (upload a new one to replace it):</p>
+                <img src="~/Images/Products/@Model.ImageURL"
+                     alt="Current product image"
+                     style="max-height: 120px; border-radius: 6px; border: 1px solid #dee2e6;" />
+            </div>
+        }
+
+        <div class="col-12 m-2">
+            <input type="submit" class="btn btn-success px-3"  />
+            <a asp-action="Index" asp-controller="Product" class="btn btn-light">Cancel</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

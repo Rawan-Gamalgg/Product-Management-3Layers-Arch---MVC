@@ -1,0 +1,42 @@
+﻿ @model List<ProductReadVM> 
+@* @model List<ProductCategoryVM>
+ *@
+
+<label>Product</label>
+<select name="ProdId" id="product-dropdown" class="form-select" required>
+    <option value=""> Select Product </option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.ProductId">@item.ProductName</option>
+    }
+</select>
+ </div>
+@*<table class="table text-center">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+
+            <th scope="col">Stock</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <th scope="row">@product.ProductId</th>
+                <th scope="row">@product.ProductName</th>
+                <th scope="row">@product.ProductDescription</th>
+                <th scope="row">@product.Category</th>
+                <th scope="row">@product.Price</th>
+                <th scope="row">@product.Count</th>
+
+
+            </tr>
+        }
+    </tbody>
+</table> *@

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../../Day10/ASP .NET CORE MVC D10/ASP .NET CORE MVC D10.csproj" Id="6a7342cd-9fa0-4ca8-bcf2-72381623de1a" />
+  <Project Path="Ecommerce.BLL/Ecommerce.BLL.csproj" />
+  <Project Path="Ecommerce.DAL/Ecommerce.DAL.csproj" />
+  <Project Path="EcommerceSystem.PL/EcommerceSystem.PL.csproj" />
+</Solution>

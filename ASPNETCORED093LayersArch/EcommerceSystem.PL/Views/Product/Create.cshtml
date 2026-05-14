@@ -1,0 +1,92 @@
+﻿@using Ecommerce.BLL
+@model ProductCreateVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-uppercase text-center mb-5" style="background: linear-gradient(135deg, white 0%, green 100%); background-clip: text; -webkit-background-clip: text; color: transparent; font-weight: 800; letter-spacing: 2px;">
+    Create New Product
+</h1>
+<hr />
+
+<div class="d-flex justify-content-center align-items-center m-2" style="margin-top: 7px;">
+    <form asp-action="Create" asp-controller="Product" method="post" enctype="multipart/form-data" class="row g-3 p-2 w-50 shadow-lg mt-2">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    
+        <input asp-for="Id" type="hidden" value="0" />  <!-- Important for remote validation -->
+    
+        <div class="col-md-8">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ExpiryDate" class="form-label"></label>
+            <input asp-for="ExpiryDate" class="form-control" type="date" />
+            <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Count" class="form-label"></label>
+            <input asp-for="Count" class="form-control" type="number" />
+            <span asp-validation-for="Count" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="CategoryId" class="form-label"></label>
+            <select class="form-select" asp-for="CategoryId" asp-items="Model.Categoryies">
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        
+        <div class="col-md-4 mb-2">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" type="text" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="Image" class="form-label"></label>
+            <input asp-for="Image" class="form-control" type="file" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+            <small class="text-muted">Allowed types: jpg, jpeg, png (max 5MB)</small>
+
+        </div>
+
+
+        <div class="col-12 m-2">
+            <input type="submit"  class="btn btn-success px-3"/>
+            <a asp-action="Index" asp-controller="Product" class="btn btn-light">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white" id="exampleModalLabel">
+                    <i class="fa fa-check text-success" aria-hidden="true"></i>
+                    Product Created
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- optional modal body/footer -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

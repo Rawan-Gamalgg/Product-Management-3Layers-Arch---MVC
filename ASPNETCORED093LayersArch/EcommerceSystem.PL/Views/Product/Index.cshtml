@@ -1,0 +1,103 @@
+﻿
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ProductReadVM>
+
+<a class="btn btn-success" href="~/Product/create">Create New Product</a>
+@* <h1 class="text-uppercase text-muted text-center">Products List</h1>
+ *@<h1 class="text-uppercase text-center mb-5" style="background:  linear-gradient(135deg, white 0%, black 100%);background-clip: text; -webkit-background-clip: text; color: transparent; font-weight: 800; letter-spacing: 2px;">
+    Products List
+</h1>
+<div class="d-flex justify-content-center align-items-center" style="">
+
+
+    <hr />
+    <table class="table table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+                <th scope="col">Count</th>
+                <th scope="col">Image</th>
+
+            
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+
+        </tr >
+    </thead>
+    <tbody >
+           
+            @foreach (var product in Model)
+        { 
+                <tr class="align-items-center">
+                    <th scope="row">@product.ProductId</th>
+                    <td>@product.ProductName</td>
+                    <td>@product.Count</td>
+                    @if (@product.ImageURL != null)
+                    {
+                        <td>@* @product.ImageURL *@
+                            <img src="~/Images/products/@product.ImageURL" class="img-thumbnail" style="width: 150px; height: 100px;" />
+                        </td>                
+                    }
+                    else
+                    {
+                        <td><span class="text-muted">No Image</span></td>
+                    }
+                    <td>@product.Price</td>
+                    <td class="text-muted"> <a href="~/Category/GetByID" class="btn btn-secondary"> @product.Category </a></td>
+                <td>
+                        <a href="~/Product/GetById/@product.ProductId" class="btn btn-primary m-2">
+                        View Details
+                    </a>
+                        <a href="~/Product/update/@product.ProductId" class="btn btn-outline-warning m-2">
+                        Edit
+                        </a>
+                        <a href="~/Product/delete/@product.ProductId" id="@product.ProductId" data-bs-toggle="modal" data-bs-target="#exampleModal+@product.ProductId" class="btn btn-outline-danger m-2">
+                        Delete
+                    </a>
+
+                    
+ 
+                        <!-- Modal  -->
+                        <div class="modal fade" id="exampleModal+@product.ProductId" tabindex="-1" aria-labelledby="exampleModal+@product.ProductId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content shadow-lg border-0 rounded-4 overflow-hidden">
+                                    <div class="modal-header bg-danger border-0">
+                                        <h5 class="modal-title text-white fw-bold" id="exampleModal+@product.ProductId">
+                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Deletion
+                                        </h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center py-4">
+                                        <i class="bi bi-trash3" style="font-size: 3rem; color: #dc3545;"></i>
+                                        <p class="mt-3 fs-5">Are you sure you want to delete <strong>@product.ProductName</strong>?</p>
+                                        @* <p class="text-muted small">This action cannot be undone.</p> *@
+                                    </div>
+                                    <div class="modal-footer border-0 justify-content-center gap-3 pb-4">
+                                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                                        <a href="~/Product/delete/@product.ProductId" class="btn btn-danger rounded-pill px-4"> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      
+            </tr>
+              
+
+        }
+
+
+    </tbody>
+    </table> 
+</div>
+    <!-- Add Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+                          
